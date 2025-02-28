@@ -4,7 +4,8 @@ from pathlib import Path
 
 import github
 
-from .ISSUE_BODY import BODY, RESOURCE
+from .info.ISSUE_BODY import BODY, RESOURCE
+from .info.TEST_STATUS import APIStatus, IssueBody
 
 VERSION_PATH = Path(Path.cwd(), "version")
 VERSION_RES_PATH = Path(Path.cwd(), "version.json")
@@ -13,12 +14,13 @@ NOTE_PATH = Path(Path.cwd(), "note.md")
 NOTICE_URL = "https://mmirror.top/post/gong-gao.html"
 DOWNLOAD_URL = "https://mmirror.top/download.html"
 RES_ISSUE_ID = 27  # https://github.com/MaaMirror/Maa-Mirror/issues/27
+STATUS_ISSUE_ID = 47  # https://github.com/MaaMirror/Maa-Mirror/issues/47
 
 
 class Issue:
     def __init__(self, token: str):
         GH = github.Github(login_or_token=token, retry=None)
-        self.REPO = GH.get_repo("MaaMirror/Maa-Mirror")
+        self.REPO = GH.get_repo("weinibuliu/Maa-Mirror")
 
     def test(self):
         self.REPO.create_issue("Test", "This is a test for token.", labels=["update"])
@@ -74,3 +76,24 @@ class Issue:
         body = body.replace("{TIME}", str(update_time))
 
         self.REPO.get_issue(RES_ISSUE_ID).edit(body=body)
+
+    def update_api_status(self, status: tuple, test_time: datetime):
+        info = f"> 测试时间: {test_time}\n> 测试结果: {status}"
+
+        if status[0]:
+            body = IssueBody.OK
+        elif status[1] == APIStatus.Timeout:
+            body = IssueBody.Timeout
+        elif status[1] == APIStatus.HTTPError:
+            body = IssueBody.HttpError
+        elif status[1] == APIStatus.RateLimited:
+            body = IssueBody.rateLimited
+        elif status[1] == APIStatus.Limited:
+            body = IssueBody.Limited
+        else:
+            body = IssueBody.UnknowError
+
+        self.REPO.get_issue(STATUS_ISSUE_ID).edit(body=body + f"\n\n{info}")
+
+    def rebuild_website(self):
+        self.REPO.get_workflow("check.yml").create_dispatch(ref="main")

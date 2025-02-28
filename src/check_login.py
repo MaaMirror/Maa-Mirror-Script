@@ -1,3 +1,5 @@
+# 弃用
+
 import aligo
 import bypy
 

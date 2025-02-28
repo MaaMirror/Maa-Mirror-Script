@@ -22,6 +22,10 @@ INFOS = """
 
 BODY = (
     """## 更新日志 | Release Note
+> MAA 更新时间 | 镜像更新时间
+> --- | ---
+> {RELEASE_TIME} | {TIME}
+
 <details>
 
 <summary>点击查看</summary>
@@ -31,10 +35,6 @@ BODY = (
 </details>
 
 ## 下载地址 | Download
-> MAA 更新时间 | 镜像更新时间
-> --- | ---
-> {RELEASE_TIME} | {TIME}
-
 - **[Maa-Mirror]({DOWNLOAD_URL})**
 - [Github](https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/{VERSION})
 """

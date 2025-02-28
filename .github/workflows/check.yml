@@ -36,7 +36,8 @@ jobs:
 
         - name: Run check
           run: |
-            python index.py --CF --check --check_res --token ${{ secrets.GITHUB_TOKEN }}
+            python index.py --CF --token ${{ secrets.ACTION_TOKEN }}
+            python index.py  --check --check_res --token ${{ secrets.GITHUB_TOKEN }}
 
         - name: Run Issue (MAA)
           if: env.maa == 'true'
@@ -73,4 +74,4 @@ jobs:
 
         - name: Rebuild Page
           run: |
-            python index.py --rebuild --token ${{ secrets.ACTION_GITHUB }}
+            python index.py --build --token ${{ secrets.ACTION_TOKEN }}

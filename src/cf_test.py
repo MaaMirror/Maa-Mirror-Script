@@ -18,7 +18,7 @@ def get_api(url: str) -> tuple:
         if req.status == 200:
             return True, req.json(), used
         else:
-            return True, req.status, used
+            return False, req.status, used
 
     except urllib3.exceptions.TimeoutError:
         return False, APIStatus.Timeout
@@ -37,7 +37,12 @@ def get_time(ts: int | float) -> datetime:
 def run() -> tuple[tuple, datetime]:
     """
     return (status, time)\n
-    status: (bool,dict,?datetime) # if status is False,will not return datetime.
+    status: (tuple,datetime)
     """
     status = get_api(MAA_API)
-    return status, get_time(status[1]["time"])
+    print(f"GET result: {status}")
+
+    if status[0]:
+        return status, get_time(status[1]["time"])
+    else:
+        return status, datetime.now(timezone(timedelta(hours=8)))

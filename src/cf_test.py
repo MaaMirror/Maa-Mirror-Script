@@ -7,16 +7,22 @@ from .info.TEST_STATUS import APIStatus
 MAA_API = "https://maa.mmirror.top/?test=true"
 
 
-def get_api(url: str) -> tuple:
+def get_api(url: str, token: str | None = None) -> tuple:
     try:
+        headers = {
+            "Authorization": token,
+            "Content-Type": "application/json",
+        }
         st = time.perf_counter()
-        req = urllib3.request("GET", url, timeout=10, retries=0)
+        req = urllib3.request("GET", url, timeout=10, retries=0, headers=headers)
         et = time.perf_counter()
 
         used = round((et - st) * 1000, 2)
 
         if req.status == 200:
             return True, req.json(), used
+        elif req.status == 403:
+            return False, APIStatus.Forbidden, used
         else:
             return False, req.status, used
 
@@ -34,12 +40,12 @@ def get_time(ts: int | float) -> datetime:
     return ti
 
 
-def run() -> tuple[tuple, datetime]:
+def run(token: str | None = None) -> tuple[tuple, datetime]:
     """
     return (status, time)\n
     status: (tuple,datetime)
     """
-    status = get_api(MAA_API)
+    status = get_api(MAA_API, token)
     print(f"GET result: {status}")
 
     if status[0]:

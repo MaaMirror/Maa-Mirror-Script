@@ -36,7 +36,7 @@ jobs:
 
         - name: Run check
           run: |
-            python index.py --CF --token ${{ secrets.ACTION_TOKEN }}
+            python index.py --cf --token ${{ secrets.ACTION_TOKEN }} --cf_token ${{ secrets.CF_TOKEN }}
             python index.py  --check --check_res --token ${{ secrets.GITHUB_TOKEN }}
 
         - name: Run Issue (MAA)

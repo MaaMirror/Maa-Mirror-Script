@@ -5,8 +5,8 @@ args = Argparser().args
 
 token: str = args.token
 
-if args.CF:
-    api_infos = cf_test.run()
+if args.cf:
+    api_infos = cf_test.run(args.cf_token)
     issue.Issue(token).update_api_status(api_infos[0], api_infos[1])
 if args.check:
     check.MAA(token).run()

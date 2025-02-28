@@ -42,13 +42,12 @@ jobs:
         - name: Run Issue (MAA)
           if: env.maa == 'true'
           run: |
-            mv src/version .
             python index.py --issue --token ${{ secrets.ISSUE_TOKEN }}
 
         - name: Run Issue (Resource)
           if: env.res == 'true'
           run: |
-            mv res/version.json .
+            mv res/resource/version.json .
             python index.py --issue_res --token ${{ secrets.ISSUE_TOKEN }}
 
         - name: Commit Version (MAA)

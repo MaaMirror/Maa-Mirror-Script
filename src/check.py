@@ -63,12 +63,14 @@ class MAA:
 
     def run(self):
         ver = self.check()
-        in_progress = check_in_progress(self.token)
+        # in_progress = check_in_progress(self.token)
         print(f"Maa Version = {ver}")
 
+        """
         if in_progress:
             print("Cancel because a workflow is in progress.")
             return
+        """
 
         if ver:
             subprocess.run('echo "maa=true" >> "$GITHUB_ENV"', shell=True)
@@ -106,12 +108,14 @@ class Resource:
 
     def run(self):
         ver = self.check()
-        in_progress = check_in_progress(self.token)
+        # in_progress = check_in_progress(self.token)
         print(f"Resource Version = {ver}")
 
+        """
         if in_progress:
             print("Cancel because a workflow is in progress.")
             return
+        """
 
         if ver:
             subprocess.run('echo "res=true" >> "$GITHUB_ENV"', shell=True)

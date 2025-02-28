@@ -14,7 +14,5 @@ class Argparser:
         self.parser.add_argument("--issue", action="store_true", default=False)
         self.parser.add_argument("--issue_res", action="store_true", default=False)
         self.parser.add_argument("--token", type=str, help="Github Token", default=None)
-        self.parser.add_argument("--CF", type=bool, action="store_true", default=False)
-        self.parser.add_argument(
-            "--build", type=bool, action="store_true", default=False
-        )
+        self.parser.add_argument("--CF", action="store_true", default=False)
+        self.parser.add_argument("--build", action="store_true", default=False)

@@ -15,8 +15,6 @@ INFOS = """
 如确认无相关 **[公告]({NOTICE_URL})** ，请通过下列方式联系我们：
 - 前往 **[Maa-Mirror-Issue](https://github.com/MaaMirror/Maa-Mirror-Issue/issues)** 创建 issue 。
 - 发送邮件至 **<a href="mailto:weinibuliu@outlook.com">weinibuliu@outlook.com</a>**
-> [!WARNING]
-> 请勿反馈 **历史版本** 缺失问题。
 """
 
 BODY = (

@@ -78,7 +78,7 @@ class Issue:
         self.REPO.get_issue(RES_ISSUE_ID).edit(body=body)
 
     def update_api_status(self, status: tuple, test_time: datetime):
-        if status[0]:
+        if status[0]:  # status[1] is a dict,include "ver" and "time".
             body = IssueBody.OK
         elif status[1] == APIStatus.Timeout:
             body = IssueBody.Timeout
@@ -92,11 +92,14 @@ class Issue:
             body = IssueBody.UnknowError
 
         if status[0]:
-            info = f"> 响应时间: {test_time}\n> 测试结果: {status}"
+            info = f"> 响应时间: {test_time}\n> 响应耗时: {status[2]}ms\n> 版本信息: {status[1]['ver']}"  # type: ignore
         else:
             info = f"> 测试时间: {test_time}\n> 测试结果: {status}"
 
-        self.REPO.get_issue(STATUS_ISSUE_ID).edit(body=body + f"\n\n{info}")
+        contact = '> [!IMPORTANT]\n当服务不可用时，请通过下列方式联系我们：\n- 前往 **[Maa-Mirror-Issue](https://github.com/MaaMirror/Maa-Mirror-Issue/issues)** 创建 issue 。\n- 发送邮件至 **<a href="mailto:weinibuliu@outlook.com">weinibuliu@outlook.com</a>**'
+        self.REPO.get_issue(STATUS_ISSUE_ID).edit(
+            body=body + f"\n\n{info}" + f"\n\n{contact}"
+        )
 
     def rebuild_website(self):
         self.REPO.get_workflow("Gmeek.yml").create_dispatch(ref="main")

@@ -1,26 +1,20 @@
 from src.argv import Argparser
-from src import check, check_login, issue, upload
+from src import cf_test, check, issue
 
 args = Argparser().args
 
 token: str = args.token
 
-
-if args.check_login:
-    check_login.run(args.ali)
-elif args.check:
+if args.cf:
+    api_infos = cf_test.run()
+    issue.Issue(token).update_api_status(api_infos[0], api_infos[1])
+if args.check:
     check.MAA(token).run()
-elif args.check_res:
+if args.check_res:
     check.Resource(token).run()
-elif args.upload:
-    UP = upload.Upload(args.ali)
-    UP.ali()
-    UP.baidu()
-elif args.upload_res:
-    UP = upload.Res_Upload(args.ali)
-    UP.ali()
-    UP.baidu()
-elif args.issue:
+if args.issue:
     issue.Issue(token).run()
-elif args.issue_res:
+if args.issue_res:
     issue.Issue(token).update_res()
+if args.build:
+    issue.Issue(token).rebuild_website()

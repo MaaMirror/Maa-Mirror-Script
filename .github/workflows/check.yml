@@ -10,7 +10,7 @@ on:
       - "**"
 
     schedule:
-      - cron: "0/10 * * * *" # Runs every 10 minutes
+      - cron: "0/5 * * * *" # Runs every 5 minutes
 
 jobs:
     run:
@@ -36,19 +36,19 @@ jobs:
 
         - name: Run check
           run: |
-            python index.py --check --token ${{ secrets.GITHUB_TOKEN }}
-            python index.py --check_res --token ${{ secrets.GITHUB_TOKEN }}
+            python index.py --cf --token ${{ secrets.ACTION_TOKEN }}
+            python index.py  --check --check_res --token ${{ secrets.GITHUB_TOKEN }}
 
         - name: Run Issue (MAA)
           if: env.maa == 'true'
           run: |
-            python index.py --issue --token ${{ secrets.ISSUE_TOKEN }}
+            python index.py --issue --token ${{ secrets.ACTION_TOKEN }}
 
         - name: Run Issue (Resource)
           if: env.res == 'true'
           run: |
             mv res/resource/version.json .
-            python index.py --issue_res --token ${{ secrets.ISSUE_TOKEN }}
+            python index.py --issue_res --token ${{ secrets.ACTION_TOKEN }}
 
         - name: Commit Version (MAA)
           if: env.maa == 'true'
@@ -71,3 +71,7 @@ jobs:
             default_author: github_actions
             committer_name: GitHub Actions
             committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+
+        - name: Rebuild Page
+          run: |
+            python index.py --build --token ${{ secrets.ACTION_TOKEN }}

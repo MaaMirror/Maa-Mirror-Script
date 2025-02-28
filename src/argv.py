@@ -11,17 +11,8 @@ class Argparser:
     def _add_argument(self):
         self.parser.add_argument("--check", action="store_true", default=False)
         self.parser.add_argument("--check_res", action="store_true", default=False)
-        self.parser.add_argument("--check_login", action="store_true", default=False)
         self.parser.add_argument("--issue", action="store_true", default=False)
         self.parser.add_argument("--issue_res", action="store_true", default=False)
-        self.parser.add_argument("--upload", action="store_true", default=False)
-        self.parser.add_argument("--upload_res", action="store_true", default=False)
-        self.parser.add_argument("--init_upload", action="store_true", default=False)
         self.parser.add_argument("--token", type=str, help="Github Token", default=None)
-        self.parser.add_argument("--ali", type=str, help="ALi Pan Token", default=None)
-        self.parser.add_argument(
-            "--baidu",
-            type=str,
-            help="BaiDu Pan Token",
-            default=None,
-        )
+        self.parser.add_argument("--cf", action="store_true", default=False)
+        self.parser.add_argument("--build", action="store_true", default=False)

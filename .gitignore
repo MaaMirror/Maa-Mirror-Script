@@ -2,7 +2,7 @@ __pycache__
 release
 res
 note.md
-test*.*
+test.*
 devnull
 .venv
 .vscode

@@ -1,3 +1,5 @@
+# 弃用
+
 from pathlib import Path
 
 import aligo

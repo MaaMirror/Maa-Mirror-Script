@@ -48,7 +48,10 @@ class Issue:
         body = body.replace("{DOWNLOAD_URL}", DOWNLOAD_URL)
         body = body.replace("{TIME}", str(time))
         body = body.replace("{RELEASE_TIME}", str(release_time))
-        self.REPO.create_issue(title=title, body=body, labels=labels)
+        issue = self.REPO.create_issue(title=title, body=body, labels=labels)
+        print(
+            f"Create an issue: https://github.com/MaaMirror/Maa-Mirror/issues/{issue.id}"
+        )
 
     def update_res(self):
         tz = timezone(timedelta(hours=8))

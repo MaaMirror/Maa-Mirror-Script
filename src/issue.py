@@ -92,7 +92,7 @@ class Issue:
             body = IssueBody.UnknowError
 
         if status[0]:
-            info = f"> 响应时间: {test_time}\n> 响应耗时: {status[2]}ms\n> 版本信息: {status[1]['ver']}"  # type: ignore
+            info = f"> 响应时间: {test_time}\n> 响应耗时: {status[2]}ms\n> 版本信息: {status[1].get("ver")}"  # type: ignore
         else:
             info = f"> 测试时间: {test_time}\n> 测试结果: {status}"
 

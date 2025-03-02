@@ -89,14 +89,14 @@ class Issue:
         elif status[1] == APIStatus.Limited:
             body = IssueBody.Limited
         else:
-            body = IssueBody.UnknowError
+            body = IssueBody.UnknowError + f"> 错误信息: {status[2]}"
 
         if status[0]:
             info = f"> 响应时间: {test_time}\n> 响应耗时: {status[2]}ms\n> 版本信息: {status[1].get("ver")}"  # type: ignore
         else:
             info = f"> 测试时间: {test_time}\n> 测试结果: {status}"
 
-        contact = '> [!IMPORTANT]\n当服务不可用时，请通过下列方式联系我们：\n- 前往 **[Maa-Mirror-Issue](https://github.com/MaaMirror/Maa-Mirror-Issue/issues)** 创建 issue 。\n- 发送邮件至 **<a href="mailto:weinibuliu@outlook.com">weinibuliu@outlook.com</a>**'
+        contact = '> [!IMPORTANT]\n> 当服务不可用时，请通过下列方式联系我们: \n> - 前往 **[Maa-Mirror-Issue](https://github.com/MaaMirror/Maa-Mirror-Issue/issues)** 创建 issue\n> - 发送邮件至 **<a href="mailto:weinibuliu@outlook.com">weinibuliu@outlook.com</a>**'
         self.REPO.get_issue(STATUS_ISSUE_ID).edit(
             body=body + f"\n\n{info}" + f"\n\n{contact}"
         )

@@ -5,7 +5,7 @@ INFOS = """
 - **[用户 QQ 群](https://ota.maa.plus/MaaAssistantArknights/api/qqgroup)**
 
 ## 关于我们 | About Maa-Mirror
-- **[关于我们](https://www.mmirror.top/about.html)**
+- **[关于我们](https://mmirror.top/about.html)**
 
 ## 注意事项 | Note
 > [!IMPORTANT]
@@ -13,7 +13,7 @@ INFOS = """
 
 ## 问题反馈 | Feedback
 如确认无相关 **[公告]({NOTICE_URL})** ，请通过下列方式联系我们：
-- 前往 **[Maa-Mirror-Issue](https://github.com/MaaMirror/Maa-Mirror-Issue/issues)** 创建 issue 。
+- 前往 **[Maa-Mirror-Issue](https://github.com/MaaMirror/Maa-Mirror-Issue/issues)** 创建 issue
 - 发送邮件至 **<a href="mailto:weinibuliu@outlook.com">weinibuliu@outlook.com</a>**
 """
 

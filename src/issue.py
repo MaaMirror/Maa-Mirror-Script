@@ -12,7 +12,7 @@ VERSION_RES_PATH = Path(Path.cwd(), "version.json")
 RELEASE_TIME_PATH = Path(Path.cwd(), "release_time")
 NOTE_PATH = Path(Path.cwd(), "note.md")
 NOTICE_URL = "https://mmirror.top/post/gong-gao.html"
-DOWNLOAD_URL = "https://mmirror.top/download.html"
+DOWNLOAD_URL = "https://maa.mmirror.top/arch=win-x64"
 RES_ISSUE_ID = 27  # https://github.com/weinibuliu/Maa-Mirror/issues/27
 STATUS_ISSUE_ID = 47  # https://github.com/weinibuliu/Maa-Mirror/issues/47
 
@@ -47,7 +47,7 @@ class Issue:
         title = ver
         body = BODY.replace("{VERSION}", ver).replace("{NOTE}", note)
         body = body.replace("{NOTICE_URL}", NOTICE_URL)
-        body = body.replace("{DOWNLOAD_URL}", DOWNLOAD_URL)
+        body = body.replace("{DOWNLOAD_URL}", DOWNLOAD_URL + f"?ver={ver}")
         body = body.replace("{TIME}", str(time))
         body = body.replace("{RELEASE_TIME}", str(release_time))
         issue = self.REPO.create_issue(title=title, body=body, labels=labels)

@@ -33,7 +33,7 @@ BODY = (
 
 ## 下载地址 | Download
 - **[Maa-Mirror]({DOWNLOAD_URL})**
-> 上述地址将指向 Win-x64 架构下载。如需要下载其他架构，请查阅 [下载方式](https://mmirror.top/download.html)
+> 上述地址将指向 Win-x64 架构下载。如需要下载其他架构，请查阅 [下载方式](https://mmirror.top/download.html) 中 `API 参数说明` 一节。
 - [Github](https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/{VERSION})
 """
     + INFOS
